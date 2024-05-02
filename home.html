@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>asd</title>
+	<link rel="stylesheet" href="../static/style1.css">
+</head>
+<body>
+	<form action="{{url_for('post')}}" method="get">
+		<input type=submit>
+	<form>
+	<table>
+		{% for imagePair in images %} <!--imagePair is [image1, image2] or [image1,]-->
+		<tr>
+		{% for image in imagePair %}
+		<td><img src={{image}} width=400 height=400></td>
+		{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

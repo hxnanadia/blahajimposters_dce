@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head><title>dsdf</title></head>
+    <body>
+        <form method="post" action="{{url_for('post')}}">
+            <h2>Fill in to post:</h2>
+            <p>Image link:</p>
+            <br>
+            <input type="text" name="imgLink">
+            <p>Artist name:</p>
+            <br>
+            <input type="text" name="artist">
+            <p>Description of artwork:</p>
+            <br>
+            <textarea name="desc" placeholder="Type a beautiful story here!"></textarea>
+            <p>Tags (separate by commas):</p>
+            <textarea name="tags" placeholder="Type tags separated by commas"></textarea>
+            <input type="submit">
+        </form>
+    </body>
+</html>
