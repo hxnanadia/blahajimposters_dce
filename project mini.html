@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head><title>Art gallery</title>
+<link rel="stylesheet" href="../static/project mini.css">
+</head>
+<body>
+	<p id="p1">National Gallery</p>
+	<p id="p2"><b>Young artists</b></p>
+	<form action={{url_for("search")}} method="get">
+		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search a keyword">
+	</form>
+	<table>
+		{% for item in items %}
+		<tr>
+			<td>
+				<form action={{url_for("photosearch")}} method="get">
+				<input type="image" src={{item[0]}} alt="An image" name={{item[1]}}>
+				</form>
+			</td>
+			<td>
+				<p>{{item[2]}}</p>
+				<p>{{item[3]}}</p>
+				<p>{{item[4]}}</p>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
+
+<!-- item[0] is image link item[1] is pID item[2] is title item[3] is author item[4] is tags -->
