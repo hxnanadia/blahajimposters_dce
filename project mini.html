@@ -4,8 +4,19 @@
 <link rel="stylesheet" href="../static/project mini.css">
 </head>
 <body>
-	<p id="p1">National Gallery</p>
-	<p id="p2"><b>Young artists</b></p>
+	<table>
+	<tr>
+		<td id="blahaj"><img width=400 src="https://media.discordapp.net/attachments/1175775040906743810/1235491006632300625/IMG_1409.png?ex=6634902a&is=66333eaa&hm=e343a4c2519665749407a3ec071ccf3a0706b00e24cb7b96957b4a052310df75&=&format=webp&quality=lossless&width=733&height=417"></td>
+		<td><p id="p1">DIVISION OF CREATIVE EXPRESSION</p>
+			<p id="p2"><b>NATIONAL GALLERY</b></p></td>
+		<td><p class="links"><a href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Happy-Smiley.png">About DCE</a></p>
+			<p class="links"><a href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Happy-Smiley.png">Featured events</a></p>
+			<form action={{url_for('submission')}}>
+			<input type="submit" value="Submit your project" color=grey id="submission">
+			</form></td>
+		</tr>
+	</table>
+	
 	<form action={{url_for("search")}} method="get">
 		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search a keyword">
 	</form>
