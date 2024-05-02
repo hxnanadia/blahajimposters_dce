@@ -9,9 +9,19 @@
 	<form>
 	<table>
 		{% for imagePair in images %} <!--imagePair is [image1, image2] or [image1,]-->
+		{% set outer_loop = loop %}
 		<tr>
 		{% for image in imagePair %}
-		<td><img src={{image}} width=400 height=400></td>
+		<td>
+		{% if outer_loop.revindex0 == 0 %}
+		{% set i = loop.revindex %}
+		{% else %}
+		{% set i = (outer_loop.revindex0-1) * 3 + num + loop.revindex %}
+		{% endif %}
+			<a href="{{url_for('view', i=i)}}">
+				<img src={{image}} width=400 height=400>
+			</a>
+		</td>
 		{% endfor %}
 		</tr>
 		{% endfor %}
