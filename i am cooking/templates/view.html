@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>eads</title>
+    <head><title>Lumina</title>
+		<link rel="stylesheet" href="../static/style1.css">
     </head>
     <body>
         <img src="{{imgLink}}">
@@ -11,7 +11,7 @@
         <h6>{{tag}}<h6>
         {% endfor %}
         <form action="{{url_for('index')}}">
-        <input type="submit">
+        <input type="submit" value="Go back to home page">
         </form>
     </body>
 </html>
