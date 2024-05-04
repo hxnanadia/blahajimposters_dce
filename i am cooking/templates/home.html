@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head><title>Art Gallery</title>
+<head><title>Lumina</title>
 	<link rel="stylesheet" href="../static/style1.css">
 </head>
 <body>
 	<!-- Top row -->
 	<table>
 		<tr>
-			<td id="blahaj">
+			<td id="blahaj" style = "width: 13%">
 				<a href="{{url_for('index')}}">
-					<img width=400 src="../static/blahajLogo.png">
+					<img width=300 img align = "left" src="../static/blahajLogo.png">
 				</a>
 			</td>
-			<td>
-				<p id="p1">DIVISION OF CREATIVE EXPRESSION</p>
-				<p id="p2"><b>NATIONAL GALLERY</b></p>
+			<td style = "width: 65%">
+				<p id="p1">LUMINA</p>
+				<p id="p2"><b>LIGHTING THE WORLD UP WITH CREATIVITY</b></p>
 			</td>
-			<td>
+			<td style="width:22%">
 				<p class="links"><a href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Happy-Smiley.png">About DCE</a></p>
-				<p class="links"><a href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Happy-Smiley.png">Featured events</a></p>
-				<form action="{{url_for('post')}}" method="get">
-					<input type="submit" value="Submit your project" color=grey>
+				<p class="links"><a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWPd5WnBWCUBh49dd5QHXnI3OrAa5-tuaSpSxOtKDAOQ&s">Featured events</a></p>
+				<form align="left" action="{{url_for('post')}}" method="get">
+					<input type="submit" value="Submit your project">
 				</form>
 			</td>
 		</tr>
 	</table>
-
+	<br>
 	<!-- Search bar -->
 	<form action="{{url_for('index')}}" method="post">
-		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search a keyword">
+		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search for innovative and inspiring projects">
 	</form>
-
+	<br>
 	<!-- Images -->
 	<table>
 		{% for imagePair in images %} <!--imagePair is [(id1, image1), (id2, image2)] or [(id1, image1),]-->
