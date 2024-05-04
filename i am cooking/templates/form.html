@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head><title>dsdf</title></head>
+    <head><title>Lumina</title>
+		<link rel="stylesheet" href="../static/style1.css">
+	</head>
     <body>
         <form method="post" action="{{url_for('post')}}">
             <h2>Fill in to post:</h2>
@@ -15,6 +17,7 @@
             <textarea name="desc" placeholder="Type a beautiful story here!" required></textarea>
             <p>Tags (separate by commas):</p>
             <textarea name="tags" placeholder="Type tags separated by commas" required></textarea>
+			<br>
             <input type="submit">
         </form>
     </body>
