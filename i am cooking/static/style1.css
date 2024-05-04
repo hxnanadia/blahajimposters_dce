@@ -1,24 +1,60 @@
+.searchbar{
+	border-radius:20px;
+	font-size:150%;
+	size:1000;
+	width:100%;
+}
+
 body {
-    text-align: center;
+	text-align: center;
+	background-color: black;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 table{
 	margin: auto;
 }
 
-.searchbar{
-	border-radius:10px;
-	font-size:130%;
-	size:1000;
-	width:500px; 
+td, tr {
+	padding: 20px;
+}
+
+.links {
+	text-align: left;
+	font-size: 150%;
+}
+
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: CadetBlue;
+}
+
+/* selected link */
+a:active {
+  color: DarkSlateBlue;
 }
 
 #p1{
-	font-size:130%;
+	font-size:600%;
+	margin: auto;
+	text-align: left;
 }
 
 #p2{
-	font-size:120%;
+	font-size:150%;
+	margin: auto;
+	text-align: left;
 }
 
 #input{
