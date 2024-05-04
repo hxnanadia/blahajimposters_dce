@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head><title>Art Gallery</title>
+	<link rel="stylesheet" href="../static/style1.css">
+</head>
+<body>
+	<!-- Top row -->
+	<table>
+		<tr>
+			<td id="blahaj">
+				<a href="{{url_for('index')}}">
+					<img width=400 src="../static/blahajLogo.png">
+				</a>
+			</td>
+			<td>
+				<p id="p1">DIVISION OF CREATIVE EXPRESSION</p>
+				<p id="p2"><b>NATIONAL GALLERY</b></p>
+			</td>
+			<td>
+				<p class="links"><a href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Happy-Smiley.png">About DCE</a></p>
+				<p class="links"><a href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Happy-Smiley.png">Featured events</a></p>
+				<form action="{{url_for('post')}}" method="get">
+					<input type="submit" value="Submit your project" color=grey>
+				</form>
+			</td>
+		</tr>
+	</table>
+
+	<!-- Search bar -->
+	<form action="{{url_for('index')}}" method="post">
+		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search a keyword">
+	</form>
+
+	<!-- Images -->
+	<table>
+		{% for imagePair in images %} <!--imagePair is [(id1, image1), (id2, image2)] or [(id1, image1),]-->
+		<tr>
+		{% for image in imagePair %}
+		<td>
+			<a href="{{url_for('view', i=image[0])}}">
+				<img src={{image[1]}} style="width: 400px; height: 400px; object-fit: cover;">
+			</a>
+		</td>
+		{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
