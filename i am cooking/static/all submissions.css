@@ -1,0 +1,33 @@
+table{
+	margin: auto;
+	vertical-align:center;
+	width: 100%;
+}
+
+.table1{
+	font-size: 150%;
+	height:30px;
+	margin-top: 0px;
+	border-spacing: 80px 0px;
+}
+	
+h1{
+	text-align: left;
+	font-size: 500%;
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+#blahaj{
+	width: 50px;
+}
+
+.logos{
+	width: 300px;
+}
+
+.table2{
+	text-align: center;
+	font-size:150%;
+	margin-top: 20px;
+}
