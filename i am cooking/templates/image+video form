@@ -22,6 +22,7 @@ body {text-align: center}
 				<option value="photography">Photography</option>
 				<option value="videography">Videography</option>
 			</select></p>
+		<p>Link to thumbnail (videography): <input type="text" name="thumbnail" id="thumbnail"></p>
 		<p><input type="submit" value="submit" id="submit"></p>
 	</form>
 </body>
