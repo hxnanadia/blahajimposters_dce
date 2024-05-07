@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head><title>Lumina</title>
+	<!-- logo in tab -->
+	<link rel="icon" href="../static/blahajLogo.png">
 	<link rel="stylesheet" href="../static/style1.css">
 </head>
 <body>
@@ -27,7 +29,9 @@
 	</table>
 	<br>
 	<!-- Search bar -->
-	<form action="{{url_for('index')}}" method="post">
+	<form action="{{url_for('index')}}" method="post" id="form1">
+		<button><input type="submit" name="photography" value='Photography'></button>
+		<button><input type="submit" name="videography" value='Videography'></button>
 		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search for innovative and inspiring projects">
 	</form>
 	<br>
