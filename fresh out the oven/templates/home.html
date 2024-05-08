@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head><title>Lumina</title>
+	<!-- logo in tab -->
+	<link rel="icon" href="../static/blahajLogo.png">
+	<link rel="stylesheet" href="../static/style1.css">
+</head>
+<body>
+	<!-- Top row -->
+	<table>
+		<tr>
+			<td id="blahaj" style = "width: 13%">
+				<a href="{{url_for('index')}}">
+					<img width=300 align="left" src="../static/blahajLogo.png">
+				</a>
+			</td>
+			<td style = "width: 65%">
+				<p id="p1">LUMINA</p>
+				<p id="p2"><b>LIGHTING THE WORLD UP WITH CREATIVITY</b></p>
+			</td>
+			<td style="width:22%">
+				<p class="links"><a href="https://upload.wikimedia.org/wikipedia/commons/4/4e/Happy-Smiley.png">About DCE</a></p>
+				<p class="links"><a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWPd5WnBWCUBh49dd5QHXnI3OrAa5-tuaSpSxOtKDAOQ&s">Featured events</a></p>
+				<form align="left" action="{{url_for('post')}}" method="get">
+					<input type="submit" value="Submit your project">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<!-- Search bar -->
+	<form action="{{url_for('index')}}" method="post" id="form1">
+		<button type="submit" style="border-style: solid" name="isImg" formaction="{{url_for('index')}}" formmethod="post">Show Photos</button>
+		<button type="submit" style="border-style: solid" name="isVid" formaction="{{url_for('index')}}" formmethod="post">Show Videos</button>
+		<button type="submit" style="border-style: solid" name="both" formaction="{{url_for('index')}}" formmethod="post">Show Both</button>
+		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search for innovative and inspiring projects">
+	</form>
+	<br>
+	<!-- Images -->
+	<table>
+		{% for imagePair in images %} <!--imagePair is [(id1, image1), (id2, image2)] or [(id1, image1),]-->
+		<tr>
+		{% for image in imagePair %}
+		<td>
+			<a href="{{url_for('view', i=image[0])}}">
+				{% if image[2] == "Photography" or image[2] == "Illustration" %}
+				<img src={{image[1]}} style="width: 400px; height: 400px; object-fit: cover;">
+				{% elif image[2] == "Videography" %}
+				<img src="https://img.youtube.com/vi/{{image[1]}}/default.jpg" style="width: 400px; height: 400px; object-fit: cover;">
+				{% endif %}
+			</a>
+		</td>
+		{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

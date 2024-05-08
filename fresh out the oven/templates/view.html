@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Lumina</title>
+		<link rel="stylesheet" href="../static/style1.css">
+    </head>
+    <body>
+        <h1>{{title}}</h1>
+        {% if type == "Photography" or type == "Illustration" %}
+        <img src="{{link}}">
+        {% elif type == "Videography" %}
+        <iframe src="https://www.youtube.com/embed/{{link}}"></iframe>
+        {% endif %}
+        <h3>By {{artist}}</h3>
+        <p>"{{desc}}"</p>
+        {% for tag in tags %}
+        <h5>{{tag}}<h5>
+        {% endfor %}
+        <form action="{{url_for('index')}}">
+        <input type="submit" value="Go back to home page">
+        </form>
+    </body>
+</html>
