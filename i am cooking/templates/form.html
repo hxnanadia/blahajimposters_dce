@@ -1,24 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head><title>Lumina</title>
-		<link rel="stylesheet" href="../static/style1.css">
-	</head>
-    <body>
-        <form method="post" action="{{url_for('post')}}">
-            <h2>Fill in to post:</h2>
-            <p>Image link:</p>
-            <br>
-            <input type="text" name="imgLink" required>
-            <p>Artist name:</p>
-            <br>
-            <input type="text" name="artist" required>
-            <p>Description of artwork:</p>
-            <br>
-            <textarea name="desc" placeholder="Type a beautiful story here!" required></textarea>
-            <p>Tags (separate by commas):</p>
-            <textarea name="tags" placeholder="Type tags separated by commas" required></textarea>
-			<br>
-            <input type="submit">
-        </form>
-    </body>
+<head><title>Submit Lumina project</title></head>
+<style>
+p {font-size:150%}
+body {text-align: center}
+.link {width: 190px}
+#type {font-size: 80%}
+#submit {font-size:90%}
+#back {font-size:90%}
+table {margin-left: auto; margin-right: auto;}
+</style>
+<body>
+	<h1>Submission Form</h1>
+	<form method="post" action='{{url_for("post")}}'>
+		<p>Title: <input type="text" name="title" id="title" required></p>
+		<p>Artist: <input type="text" name="artist" id="artist" required></p>
+		<p>Short description: </p>
+		<textarea name="desc" id="desc" rows='4' cols='50' placeholder="Describe your artwork!" required></textarea>
+		<p><label for="type">Type of submission:</label>
+			<select name="type" id="type">
+				<option value="Photography">Photography (Image link)</option>
+				<option value="Illustration">Illustration (Image link)</option>
+				<option value="Videography">Videography (Youtube link)</option>
+			</select>
+		</p>
+		<p>Link to attachment: </p>
+		<table>
+			<tr>
+				<th>Photography</th>
+				<td><input type="url" name="PhotographyURL" class="link"></td>
+			</tr>
+			<tr>
+				<th>Illustration</th>
+				<td><input type="url" name="IllustrationURL" class="link"></td>
+			</tr>
+			<tr>
+				<th>Videography</th>
+				<td><input type="url" name="VideographyURL" class="link" pattern="https:\/\/www\.youtube\.com\/watch\?v=.*"></td>
+			</tr>
+		</table>
+		<p><input type="submit" value="Submit" id="submit"></p>
+	</form>
+	<form action="{{url_for('index')}}">
+		<p><input type="submit" value="Go back" id="back"></p>
+	</form>
+</body>
 </html>

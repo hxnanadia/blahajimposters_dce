@@ -1,6 +1,8 @@
 import flask
 import sqlite3
+import re
 numOfColumns = 3
+extraFilter = ""
 
 app = flask.Flask(__name__)
 
@@ -10,39 +12,42 @@ def index():
         conn = sqlite3.connect("posts.db")
         #display from largest id to smallest id, so can display newest posts first
         cursor = conn.execute("""SELECT * FROM Post ORDER BY PostID DESC""")
-        cursor2 = conn.execute("""SELECT COUNT(*) FROM Post""")
         
     else: #POST
-        search = flask.request.form["thesearch"]
+        global extraFilter
+        if "isImg" in flask.request.form:
+            extraFilter = ' AND (Type = "Photography" OR "Illustration")'        
+        if "isVid" in flask.request.form:
+            extraFilter = ' AND Type = "Videography" '
+        if "both" in flask.request.form:
+            extraFilter = ""
+
+        search = ""
+        if "search" in flask.request.form:
+            search = flask.request.form["thesearch"]
+        
         conn = sqlite3.connect("posts.db")
         cursor = conn.execute("""SELECT * FROM Post 
-                            WHERE (Artist LIKE ?) OR (Description LIKE ?) OR (Tags LIKE ?)
-                            ORDER BY PostID DESC""",
+                            WHERE ((Title LIKE ?) OR (Artist LIKE ?) OR (Description LIKE ?)) """
+                            + extraFilter +
+                            "ORDER BY PostID DESC",
                             ("%"+search+"%","%"+search+"%","%"+search+"%"))
-        cursor2 = conn.execute("""SELECT COUNT(*) FROM Post
-                            WHERE (Artist LIKE ?) OR (Description LIKE ?) OR (Tags LIKE ?)""",
-                            ("%"+search+"%","%"+search+"%","%"+search+"%"))
-    images = []
+        
+    images = [] #images is not just images anymore
     currentPair = []
     for post in cursor:
         if len(currentPair) == numOfColumns: 
             images.append(currentPair)
             currentPair = []
-            currentPair.append((post[0], post[1]))
+            currentPair.append((post[0], post[4], post[5]))
         else:
-            currentPair.append((post[0], post[1]))
+            currentPair.append((post[0], post[4], post[5]))
     if len(currentPair) != 0:
         images.append(currentPair)
     print(images)
 
-    for data in cursor2:
-        num = data[0]
-    num = num%3
-    if num == 0:
-        num = 3
-
     conn.close()
-    return flask.render_template("home.html", images=images, num=num)
+    return flask.render_template("home.html", images=images)
 
 @app.route("/post/", methods=["GET","POST"])
 def post():
@@ -50,15 +55,24 @@ def post():
     if flask.request.method == "GET":
         return flask.render_template("form.html")
     #POST
-    imgLink = flask.request.form["imgLink"]
+    title = flask.request.form["title"]
     artist = flask.request.form["artist"]
     desc = flask.request.form["desc"]
-    tags = flask.request.form["tags"] #not filtered yet. in the db it will remain as one string. when displaying the post then we split and lower and strip
+    type = flask.request.form["type"]
+    link = flask.request.form[type+"URL"]
+    if link == "":
+        return flask.redirect(flask.url_for("failed"))
+    
+    print("link", link)
 
+    if type == "Videography":
+        i = link.find("?v=")
+        link = link[i+3:]
+    
     #insert new post into db
     conn = sqlite3.connect("posts.db")
-    conn.execute("""INSERT INTO Post(ImgLink, Artist, Description, Tags) 
-                    VALUES(?,?,?,?)""", (imgLink, artist, desc, tags))
+    conn.execute("""INSERT INTO Post(Title, Artist, Description, Link, Type) 
+                    VALUES(?,?,?,?,?)""", (title, artist, desc, link, type))
     conn.commit()
     conn.close()
     #go back to /
@@ -67,25 +81,37 @@ def post():
 @app.route("/view/<int:i>", methods=["GET"])
 def view(i):
     conn = sqlite3.connect("posts.db")
-    cursor = conn.execute("""SELECT * FROM Post WHERE PostID = ?""", (i,))
+    cursor = conn.execute("SELECT * FROM Post WHERE PostID = ?", (i,))
     for post in cursor: #only for one post, because there is a return statement
-        imgLink = post[1]
+        title = post[1]
         artist = post[2]
         desc = post[3]
-        tagsStr = post[4]
+        link = post[4]
+        type = post[5]
         tags = []
-        tagsStr = tagsStr.split(",")
+        tags.append(type)
+
+        tagsStr = desc.split(" ")
         for tag in tagsStr:
-            tag = tag.strip()
-            tags.append(tag)
-        return flask.render_template("view.html", imgLink=imgLink,
+            if tag[0] == "#":
+                tags.append(tag)
+        print(tags)
+
+        for tag in tags:
+            desc = desc.replace(tag,"")
+
+        return flask.render_template("view.html", title=title,
                                      artist=artist, desc=desc,
-                                     tags=tags)
+                                     link=link, type=type, tags=tags)
     conn.close()
 
 @app.route("/success", methods=["GET"])
 def success():
     return flask.render_template("success.html")
+
+@app.route("/failed", methods=["GET"])
+def failed():
+    return flask.render_template("failed.html")
 
 if __name__ == "__main__":
     app.run()

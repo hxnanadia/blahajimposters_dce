@@ -11,7 +11,7 @@
 		<tr>
 			<td id="blahaj" style = "width: 13%">
 				<a href="{{url_for('index')}}">
-					<img width=300 img align = "left" src="../static/blahajLogo.png">
+					<img width=300 align="left" src="../static/blahajLogo.png">
 				</a>
 			</td>
 			<td style = "width: 65%">
@@ -30,8 +30,9 @@
 	<br>
 	<!-- Search bar -->
 	<form action="{{url_for('index')}}" method="post" id="form1">
-		<button><input type="submit" name="photography" value='Photography'></button>
-		<button><input type="submit" name="videography" value='Videography'></button>
+		<button type="submit" style="border-style: solid" name="isImg" formaction="{{url_for('index')}}" formmethod="post">Show Photos</button>
+		<button type="submit" style="border-style: solid" name="isVid" formaction="{{url_for('index')}}" formmethod="post">Show Videos</button>
+		<button type="submit" style="border-style: solid" name="both" formaction="{{url_for('index')}}" formmethod="post">Show Both</button>
 		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search for innovative and inspiring projects">
 	</form>
 	<br>
@@ -42,7 +43,11 @@
 		{% for image in imagePair %}
 		<td>
 			<a href="{{url_for('view', i=image[0])}}">
+				{% if image[2] == "Photography" or image[2] == "Illustration" %}
 				<img src={{image[1]}} style="width: 400px; height: 400px; object-fit: cover;">
+				{% elif image[2] == "Videography" %}
+				<img src="https://img.youtube.com/vi/{{image[1]}}/default.jpg" style="width: 400px; height: 400px; object-fit: cover;">
+				{% endif %}
 			</a>
 		</td>
 		{% endfor %}
