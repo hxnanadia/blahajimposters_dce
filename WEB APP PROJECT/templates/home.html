@@ -34,13 +34,13 @@
 	<!-- Search bar -->
 	<form action="{{url_for('index')}}" method="post">
 		<div class="btn-group" style="width:100%">
-			<button type="submit" style="width:33.33%" name="isImg" formaction="{{url_for('index')}}" formmethod="post">Show Photos</button>
-			<button type="submit" style="width:33.33%" name="isVid" formaction="{{url_for('index')}}" formmethod="post">Show Videos</button>
-			<button type="submit" style="width:33.33%" name="both" formaction="{{url_for('index')}}" formmethod="post">Show Both</button>
+			<button type="submit" style="width:33.33%" name="thefilter" value="isImg">Show Photos</button>
+			<button type="submit" style="width:33.33%" name="thefilter" value="isVid">Show Videos</button>
+			<button type="submit" style="width:33.33%" name="thefilter" value="both">Show Both</button>
 		</div>
 		<br>
 		<br>
-		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search for innovative and inspiring projects">
+		<input type="search" class="searchbar" id="input" name="thesearch" value="{{qq}}" placeholder="Search for innovative and inspiring projects">
 	</form>
 	<br>
 	<!-- Images -->
