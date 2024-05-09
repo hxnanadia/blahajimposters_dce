@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Lumina</title>
+		<link rel="stylesheet" href="../static/style1.css">
+    </head>
+    <body>
+		<table>
+			<tr>
+			<td id="blahaj" style = "width: 50%">
+				{% if type == "Photography" or type == "Illustration" %}
+				<img src="{{link}}" align="center" style="width: 100%; height: 100%;">
+				{% elif type == "Videography" %}
+				<iframe src="https://www.youtube.com/embed/{{link}}" align="center" style="width: 720px; height:405px;"></iframe>
+				{% endif %}
+			</td>
+			<td style = "width: 50%">
+				<h1 id="p1">{{title}}</h1>
+				<br>
+				<h3 id="p2">By {{artist}}</h3>
+				<br>
+				<p style="font-size:120%; text-align:left;">"{{desc}}"</p>
+				{% for tag in tags %}
+				
+				<h3 style="font-size:110%; text-align:left; font-style:italic; color:gray; margin-bottom:0px;">#{{tag}}<h3>
+				{% endfor %}
+				<br>
+				<br>
+				<form action="{{url_for('index')}}">
+					<input type="submit" class="button" value="Go back to home page">
+				</form>
+			</td>
+			</tr>
+		</table>
+    </body>
+</html>

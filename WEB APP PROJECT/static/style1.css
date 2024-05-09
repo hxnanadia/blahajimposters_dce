@@ -1,0 +1,148 @@
+.searchbar{
+	border-radius:20px;
+	font-size:150%;
+	size:1000;
+	width:100%;
+}
+
+body {
+	text-align: center;
+	background-color: black;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+table{
+	margin: auto;
+}
+
+td, tr {
+	padding: 20px;
+}
+
+.links {
+	text-align: left;
+	font-size: 150%;
+}
+
+/* unvisited link */
+a:link {
+  color: white;
+}
+
+/* visited link */
+a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: CadetBlue;
+}
+
+/* selected link */
+a:active {
+  color: DarkSlateBlue;
+}
+
+#p1{
+	font-size:575%;
+	margin: auto;
+	text-align: left;
+}
+
+#p2{
+	font-size:125%;
+	margin: auto;
+	text-align: left;
+}
+
+#input{
+	text-align: center;
+	outline:none;
+	border:none;
+	width: 100%;
+}
+
+#form1{
+	border: 1px solid white;
+	border-radius: 100px;
+	padding: 8px 10px;
+	display: flex;
+	gap: 5px;
+	width: 500px;
+	margin: 0 auto;
+	background-color: white;
+	width:90%;
+}
+
+.button {
+	font-size: 150%;
+	border-radius: 10px;
+	background-color: #60A7CF;
+	border: none;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	margin: 0;
+}
+
+.button:hover {
+	background-color: #9DD8FA;
+}
+
+.about {
+	font-size: 150%;
+	border-color: transparent;
+	background-color: transparent;
+	border: none;
+	color: white;
+	text-decoration: underline;
+	cursor: pointer;
+	margin: 0;
+}
+
+.about:hover {
+	color: CadetBlue;
+}
+
+.about:active {
+	color: DarkSlateBlue;
+}
+
+.view {
+	font-size: 125%;
+	border-radius: 10px;
+	background-color: #04AA6D;
+	border: none;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	margin: 0;
+}
+
+.btn-group button {
+  background-color: #10537B; /* Dark blue background */
+  color: white; /* White text */
+  padding: 14px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  border: transparent; /* No border */
+  float: left; /* Float the buttons side by side */
+  font-size:150%;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #1D97DE;
+}

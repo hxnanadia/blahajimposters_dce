@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head><title>Lumina</title>
+	<!-- logo in tab. change the favicon later -->
+	<link rel="icon" href="../static/luminaLogo.png">
+	<link rel="stylesheet" href="../static/style1.css">
+</head>
+<body>
+	<!-- Top row -->
+	<table>
+		<tr>
+			<td id="blahaj" style = "width: 5%">
+				<a href="{{url_for('index')}}">
+					<img width=125px img align="left" src="../static/luminaLogo.png">
+				</a>
+			</td>
+			<td style = "width: 73%">
+				<p id="p1">LUMINA STUDIOS</p>
+				<p id="p2"><b>WE LIGHT THE WAY WITH CREATIVITY</b></p>
+			</td>
+			<td style="width:22%; border-left: solid white 10px; text-align:left;">
+				<form align="left" action="{{url_for('about')}}" method="get">
+					<input type="submit" class="about" value="About LUMINA">
+				</form>
+				<p class="links"><a href="../static/blahajLogo.png">Featured events</a></p>
+				<form align="left" action="{{url_for('post')}}" method="get">
+					<input type="submit" class="button" value="Submit your project">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<!-- Search bar -->
+	<form action="{{url_for('index')}}" method="post">
+		<div class="btn-group" style="width:100%">
+			<button type="submit" style="width:33.33%" name="isImg" formaction="{{url_for('index')}}" formmethod="post">Show Photos</button>
+			<button type="submit" style="width:33.33%" name="isVid" formaction="{{url_for('index')}}" formmethod="post">Show Videos</button>
+			<button type="submit" style="width:33.33%" name="both" formaction="{{url_for('index')}}" formmethod="post">Show Both</button>
+		</div>
+		<br>
+		<br>
+		<input type="search" class="searchbar" id="input" name="thesearch" placeholder="Search for innovative and inspiring projects">
+	</form>
+	<br>
+	<!-- Images -->
+	<table>
+		{% for imagePair in images %} <!--imagePair is [(id1, image1), (id2, image2)] or [(id1, image1),]-->
+		<tr>
+		{% for image in imagePair %}
+		<td>
+			<a href="{{url_for('view', i=image[0])}}">
+				{% if image[2] == "Photography" or image[2] == "Illustration" %}
+				<img src={{image[1]}} style="width: 400px; height: 400px; object-fit: cover;">
+				{% elif image[2] == "Videography" %}
+				<img src="https://img.youtube.com/vi/{{image[1]}}/default.jpg" style="width: 400px; height: 400px; object-fit: cover;">
+				{% endif %}
+			</a>
+		</td>
+		{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
