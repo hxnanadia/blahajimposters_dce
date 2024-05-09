@@ -1,8 +1,8 @@
 import flask
 import sqlite3
-import re
 numOfColumns = 3
 extraFilter = ""
+search = ""
 
 app = flask.Flask(__name__)
 
@@ -14,17 +14,22 @@ def index():
         cursor = conn.execute("""SELECT * FROM Post ORDER BY PostID DESC""")
         
     else: #POST
-        global extraFilter
-        if "isImg" in flask.request.form:
-            extraFilter = ' AND (Type = "Photography" OR "Illustration")'        
-        if "isVid" in flask.request.form:
-            extraFilter = ' AND Type = "Videography" '
-        if "both" in flask.request.form:
-            extraFilter = ""
-
-        search = ""
-        if "search" in flask.request.form:
+        global extraFilter, search
+        if flask.request.form["thesearch"] != search:
+            print("search")
             search = flask.request.form["thesearch"]
+        else:
+            if flask.request.form["thefilter"] == "isImg":
+                print("img")
+                extraFilter = ' AND (Type = "Photography" OR "Illustration") '
+            elif flask.request.form["thefilter"] == "isVid":
+                print("vid")
+                extraFilter = ' AND Type = "Videography" '
+            elif flask.request.form["thefilter"] == "both":
+                print("b")
+                extraFilter = ""
+
+        print(f'{flask.request.form["thefilter"]} search: {flask.request.form["thesearch"]}')
         
         conn = sqlite3.connect("posts.db")
         cursor = conn.execute("""SELECT * FROM Post 
@@ -44,10 +49,10 @@ def index():
             currentPair.append((post[0], post[4], post[5]))
     if len(currentPair) != 0:
         images.append(currentPair)
-    print(images)
 
     conn.close()
-    return flask.render_template("home.html", images=images)
+    #search = ""
+    return flask.render_template("home.html", images=images, qq=search)
 
 @app.route("/post/", methods=["GET","POST"])
 def post():
