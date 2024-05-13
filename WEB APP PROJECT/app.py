@@ -103,7 +103,7 @@ def view(i):
         print(tags)
 
         for tag in tags:
-            desc = desc.replace(tag,"")
+            desc = desc.replace("#"+tag,"")
 
         return flask.render_template("view.html", title=title,
                                      artist=artist, desc=desc,
