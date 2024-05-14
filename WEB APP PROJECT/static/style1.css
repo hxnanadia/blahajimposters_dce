@@ -146,3 +146,16 @@ a:active {
 .btn-group button:hover {
   background-color: #1D97DE;
 }
+
+.zoom {
+  transition: transform .2s;
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+}
+
+.zoom:hover {
+  -ms-transform: scale(0.75); /* IE 9 */
+  -webkit-transform: scale(0.75); /* Safari 3-8 */
+  transform: scale(0.75); 
+}
