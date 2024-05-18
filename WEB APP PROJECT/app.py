@@ -21,7 +21,7 @@ def index():
         else:
             if flask.request.form["thefilter"] == "isImg":
                 print("img")
-                extraFilter = ' AND (Type = "Photography" OR "Illustration") '
+                extraFilter = ' AND (Type = "Photography" OR Type = "Illustration") '
             elif flask.request.form["thefilter"] == "isVid":
                 print("vid")
                 extraFilter = ' AND Type = "Videography" '
