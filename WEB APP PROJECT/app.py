@@ -19,13 +19,16 @@ def index():
             print("search")
             search = flask.request.form["thesearch"]
         else:
-            if flask.request.form["thefilter"] == "isImg":
-                print("img")
-                extraFilter = ' AND (Type = "Photography" OR Type = "Illustration") '
+            if flask.request.form["thefilter"] == "isPho":
+                print("photo")
+                extraFilter = ' AND Type = "Photography" '
+            if flask.request.form["thefilter"] == "isIll":
+                print("illustration")
+                extraFilter = ' AND Type = "Illustration" '
             elif flask.request.form["thefilter"] == "isVid":
                 print("vid")
                 extraFilter = ' AND Type = "Videography" '
-            elif flask.request.form["thefilter"] == "both":
+            elif flask.request.form["thefilter"] == "all":
                 print("b")
                 extraFilter = ""
 
