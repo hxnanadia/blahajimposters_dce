@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head><title>Lumina</title>
+<head><title>LUMINA</title>
 	<!-- logo in tab. change the favicon later -->
 	<link rel="icon" href="../static/luminaLogo.png">
 	<link rel="stylesheet" href="../static/style1.css">
@@ -29,12 +29,13 @@
 	</table>
 	<br>
 	<br>
-	<!-- Search bar -->
+	<!-- Search bar; changed it to 4 buttons -->
 	<form action="{{url_for('index')}}" method="post">
 		<div class="btn-group" style="width:100%">
-			<button type="submit" style="width:33.33%" name="thefilter" value="isImg">Show Images</button>
-			<button type="submit" style="width:33.33%" name="thefilter" value="isVid">Show Videos</button>
-			<button type="submit" style="width:33.33%" name="thefilter" value="both">Show Both</button>
+			<button type="submit" style="width:25%" name="thefilter" value="isPho">Show Photos</button> 
+			<button type="submit" style="width:25%" name="thefilter" value="isIll">Show Illustrations</button>
+			<button type="submit" style="width:25%" name="thefilter" value="isVid">Show Videos</button>
+			<button type="submit" style="width:25%" name="thefilter" value="all">Show All</button>
 		</div>
 		<br>
 		<br>
